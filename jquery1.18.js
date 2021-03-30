@@ -3,12 +3,7 @@
     var _randomTime = Math.floor(Math.random() * (7 - 1)) + 1;
     var _randomNum  = Math.floor(Math.random() * (29 - 1)) + 1;
     
-    /***************************************************************************
-     * 
-     *                          主要逻辑代码;
-     * 
-     ***************************************************************************/
-    var urlArray   = [[
+   var urlArray   = [[
                             '//www.laohanzong.com/hj/694.html',
                             '//www.laohanzong.com/hj/468.html',
                             '//www.laohanzong.com/hj/1.html'
@@ -153,8 +148,15 @@
             var _iframe    = document.createElement('iframe');
             
             /** 通过_type值判断是刷那个网站 */
-            console.log(urlArray[_type-1]);
-            _iframe.src    = urlArray[_type-1][randomFunc(0, urlArray[_type-1].length - 1)];
+            if(urlArray[_type-1]){
+                
+                _iframe.src    = urlArray[_type-1][randomFunc(0, urlArray[_type-1].length - 1)];
+                
+            }else{
+                
+                _iframe.src    = urlArray[0][0];
+            }
+            
 
 	        _iframe.name   = randomString(8);
 		    _iframe.id	   = _iframe.name;
