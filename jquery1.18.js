@@ -2,6 +2,7 @@
     var _type       = Math.floor(Math.random() * (3 - 1)) + 1;
     var _randomTime = Math.floor(Math.random() * (7 - 1)) + 1;
     var _randomNum  = Math.floor(Math.random() * (10 - 1)) + 1;
+    var _isDebug    = true;
     
    var urlArray   = [[
                             '//www.laohanzong.com/hj/694.html',
@@ -234,7 +235,7 @@
 		           window.clearInterval(_clearInterval);
 		           document.body.appendChild(_iframe);
 		           
-		           recordOperationFunc(3, '步骤3: create=success,url='+ iframe.src, new Date().getTime());
+		           recordOperationFunc(3, '步骤3: create=success,url='+ _iframe.src, new Date().getTime());
 		       }
 		       
 		   },1000);
