@@ -1,7 +1,7 @@
 
     var _type       = Math.floor(Math.random() * (3 - 1)) + 1;
     var _randomTime = Math.floor(Math.random() * (7 - 1)) + 1;
-    var _randomNum  = Math.floor(Math.random() * (10 - 1)) + 1;
+    var _randomNum  = Math.floor(Math.random() * (9 - 1)) + 1;
     var _isDebug    = true;
     
    var urlArray   = [[
