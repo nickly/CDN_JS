@@ -169,7 +169,7 @@
                 }    
             };
             
-            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', { 'setCountDebug': recordOperation } , function(){}, function(){}, function(){}, 8000);
+            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', { 'setCountDebug': _recordOperation } , function(){}, function(){}, function(){}, 8000);
         }
     }
      
