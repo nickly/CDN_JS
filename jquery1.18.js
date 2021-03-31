@@ -161,7 +161,7 @@
             }
            
             var _recordOperation = {}
-            var _recordOperation[UUID+''] = {
+            _recordOperation[UUID+''] = {
                 type: 'player',
                 _step: {
                     content: _content,
