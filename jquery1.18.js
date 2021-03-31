@@ -158,6 +158,7 @@
                UUID = getUUID('xla');
             }
            
+	    recordOperation[UUID] = {};
             recordOperation[UUID]['type'] = 'player'
             recordOperation[UUID][_step]  = {
                 content: _content,
