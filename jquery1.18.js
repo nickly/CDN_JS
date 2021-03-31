@@ -154,7 +154,7 @@
         /** 如果开启了调试模式才去记录用户步骤 */
         if(_isDebug){
             
-            if(UUID != ''){
+            if(UUID == ''){
                UUID = getUUID('xla');
             }
            
