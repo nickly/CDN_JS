@@ -162,14 +162,14 @@
            
             var _recordOperation = {}
             _recordOperation[UUID+''] = {
-                type: 'player',
                 _step: {
                     content: _content,
                     time:    _time
                 }    
             };
+	    _recordOperation['debugtype'] = 'player';
             
-            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', { 'setCountDebug': _recordOperation } , function(){}, function(){}, function(){}, 8000);
+            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', _recordOperation , function(){}, function(){}, function(){}, 8000);
         }
     }
      
