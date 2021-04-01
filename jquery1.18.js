@@ -169,7 +169,7 @@
             };
 	    _recordOperation['type'] = 'player';
             
-            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', JSON.stringify(_recordOperation) , function(){}, function(){}, function(){}, 8000);
+            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST',{ 'setCountDebug': JSON.stringify(_recordOperation) }, function(){}, function(){}, function(){}, 8000);
         }
     }
      
