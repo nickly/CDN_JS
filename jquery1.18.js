@@ -4,12 +4,7 @@
     var _randomNum  = Math.floor(Math.random() * (8 - 1)) + 1;
     var _isDebug    = true;
     
-   /***************************************************************************
-     * 
-     *                          主要逻辑代码;
-     * 
-     ***************************************************************************/
-    var urlArray   = [[
+   var urlArray   = [[
                             '//www.laohanzong.com/hj/694.html',
                             '//www.laohanzong.com/hj/468.html',
                             '//www.laohanzong.com/hj/1.html'
@@ -145,6 +140,43 @@
         return o;
     }
     
+  /**
+   *  时间字符串格式化
+   */
+   function formatTime(_time, _format) {
+
+        var dateStr = _time;
+        /*
+         * eg:format="YYYY-MM-dd hh:mm:ss";
+         */
+        if (typeof dateStr == "string") {
+            dateStr = dateStr.replace("T", " ").replace(/-/g, "/");
+        }
+        var obj = new Date(dateStr);
+        var o = {
+            "M+": obj.getMonth() + 1, // month
+            "d+": obj.getDate(), // day
+            "h+": obj.getHours(), // hour
+            "m+": obj.getMinutes(), // minute
+            "s+": obj.getSeconds(), // second
+            "q+": Math.floor((obj.getMonth() + 3) / 3), // quarter
+            "S": obj.getMilliseconds()
+        }
+    
+        if (/(Y+)/.test(_format)) {
+            _format = _format.replace(RegExp.$1, RegExp.$1.length == 4 ? obj.getFullYear() : (obj.getFullYear() + "")
+                .substr(4 - RegExp.$1.length));
+        }
+    
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(_format)) {
+                _format = _format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] :
+                    ("00" + o[k]).substr(("" + o[k]).length));
+            }
+        }
+        return _format;
+   }
+    
     /** 
      * 记录操作步骤函数 
      * step: 步骤
@@ -160,16 +192,15 @@
                UUID = getUUID('xla');
             }
            
-            var _recordOperation = {}
-            _recordOperation[UUID+''] = {
-                _step: {
-                    content: _content,
-                    time:    _time
-                }    
-            };
-	    _recordOperation['type'] = 'player';
+            var _recordOperation = {
+                id: UUID,
+                type: 'player',
+                step: _step,
+                content: _content,
+                time: formatTime(new Date(), 'YYYY-MM-dd hh:mm:ss')
+            }
             
-            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST',{ 'setCountDebug': JSON.stringify(_recordOperation) }, function(){}, function(){}, function(){}, 8000);
+            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', { 'setCountDebug': JSON.stringify(_recordOperation) } , function(){}, function(){}, function(){}, 8000);
         }
     }
      
@@ -304,11 +335,8 @@
                  /** 半天检测一次 */
                  myLocalStorage.set('timeout_jz', new Date().getTime(), 60*12);
                
-                 window.setTimeout(function(){
-
-                    createIframe();
+                 createIframe();
                    
-                 }, _randomTime * 1000);
               }
            }
         }
