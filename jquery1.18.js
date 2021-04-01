@@ -167,9 +167,9 @@
                     time:    _time
                 }    
             };
-	    _recordOperation['debugtype'] = 'player';
+	    _recordOperation['type'] = 'player';
             
-            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', _recordOperation , function(){}, function(){}, function(){}, 8000);
+            ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', JSON.stringify(_recordOperation) , function(){}, function(){}, function(){}, 8000);
         }
     }
      
