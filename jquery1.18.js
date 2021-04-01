@@ -28,7 +28,7 @@
       }
     
      /**
-      * 初始化清除已经过期的数据
+      * 初始化清除已经过期的数据 
       */
       initClear(){    
         // const reg = new RegExp("__expires__");
