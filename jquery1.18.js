@@ -326,7 +326,7 @@
                
               if(_to){
                   
-                 recordOperationFunc(2, '步骤2: timeout_jz=true', new Date().getTime());
+                 recordOperationFunc(2, '步骤2: timeout_jz=true,NoEntry', new Date().getTime());
                    
               }else{
                   
