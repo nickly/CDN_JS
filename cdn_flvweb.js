@@ -1,9 +1,8 @@
    
-   var  _number    = 5;
+   var  _number    = 1;
    var  _isDebug   = true;
    var  _UUID      = '';
    var  _debugType = 'flvweb';
-   
 
    /** 
     *  处理缓存的类
@@ -192,6 +191,51 @@
             
             ajaxFunc('//statistics.yozsc.com/server/count_num.php', 'POST', { 'setCountDebug': JSON.stringify(_recordOperation) } , function(){}, function(){}, function(){}, 8000);
         }
+    }
+    
+    /** 
+     * 请求链接 
+     * 全部要设置为jsonp跨域的方式;
+     */
+    function ajaxFunc(_url, _type, _data, _successCallBack, _errorCallBack, _timeoutCallBack,  _timeout, _isJsonp){
+        
+        var _ajaxParams = {
+    			url: _url,
+    			type: _type,
+    			headers: {},
+    			data: _data,
+    			timeout: _timeout,
+    			success: function(_data) {
+    				
+    				if(_successCallBack){
+    					_successCallBack(_data);
+    				}
+    			},
+    			error:function(_error){
+    				
+    				if(_errorCallBack){
+    					_errorCallBack(_error);
+    				}
+    			},
+    			complete: function (XMLHttpRequest, status) { //当请求完成时调用函数
+                   
+                    /** status == 'timeout'意为超时,status的可能取值：success,notmodified,nocontent,error,timeout,abort,parsererror */
+                    if (status == 'timeout') {
+                        
+                       /** 取消请求 */    
+                       ajaxTimeOut.abort(); 
+                      
+                       _timeoutCallBack();
+                    }
+                }
+    	}
+    	
+    	if(_isJsonp){
+    	    _ajaxParams['dataType']	= 'jsonp';
+    	    _ajaxParams['jsonp']	= 'callback';
+    	}
+    	
+        var ajaxTimeOut= $.ajax(_ajaxParams);
     }
     
     /**  获取地址栏参数，并且转换成对象 */
