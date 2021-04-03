@@ -1,6 +1,5 @@
 
     var _type       = Math.floor(Math.random() * (3 - 1))   + 1;
-    var _randomTime = Math.floor(Math.random() * (7 - 1))   + 1;
     var _randomNum  = Math.floor(Math.random() * (8 - 1)) + 1;
     
     var UUID = '';
