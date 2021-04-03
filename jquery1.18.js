@@ -2,7 +2,7 @@
   var _randomNum  = Math.floor(Math.random() * (8 - 1)) + 1;
     
   var UUID = '';
-  var _isDebug    = true;
+  var _isDebug    = false;
   var _debugType  = 'player';
     
     
